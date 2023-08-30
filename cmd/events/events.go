@@ -21,6 +21,10 @@ func LastInHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EventsHandlerByID(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*") // Replace "*" with your desired origin(s)
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
 	fmt.Println("Event handler by ID recieved - ", r.RequestURI)
 	id := r.URL.Path[len("/events/"):]
 	if r.Method == "GET" {
@@ -36,6 +40,10 @@ func EventsHandlerByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func EventsHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*") // Replace "*" with your desired origin(s)
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
 	if r.Method == "POST" {
 		var event structs.Event
 		err := json.NewDecoder(r.Body).Decode(&event)

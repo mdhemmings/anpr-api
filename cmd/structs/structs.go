@@ -2,6 +2,12 @@ package structs
 
 import "time"
 
+type Device struct {
+	Id     string   `json:"ID" gorm:"unique"`
+	Name   string   `json:"Name"`
+	Camera []string `json:"Cameras" gorm:"type:text[]"`
+}
+
 type LastInEntry struct {
 	Owner   string `json:"Owner"`
 	Company string `json:"Company"`
